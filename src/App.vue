@@ -34,13 +34,13 @@ main {
   padding-bottom: 20px;
  
 
-  .container {
-  margin: 0 auto;
-  width: 80%;
-  // border: 1px solid red;
-  text-align: center;
+  // .container {
+  // margin: 0 auto;
+  // width: 80%;
+  // // border: 1px solid red;
+  // text-align: center;
   
-}
+  // }
 
 .jumbotron {
   height: 300px;

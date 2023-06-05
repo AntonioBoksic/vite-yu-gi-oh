@@ -41,7 +41,13 @@ export default {
         console.log(datoindietro.data.data)
         const resultArray = datoindietro.data.data
         console.log(resultArray[0].name);
+
+        //HO PERSO UN SACCO DI TEMPO QUA
         // pusho tutto l'array che ottengo in risposta nel mio array vuoto
+        //this.yugiohCardsArray.push(resultArray)
+
+        //LA SOLUZIONE ERA QUESTA, yugiohCardArray diventa resultArray, se io avessi pushato resultArray dentro a yugiohCardsArray avrei ottenuto un array yugiohcards con all'interno un array all'indice 0.
+        // Quello che volevo io invece era avere un array di oggetti, non un array con all'interno un array di oggetti.
         this.yugiohCardsArray = (resultArray)
 
       }
@@ -50,30 +56,25 @@ export default {
       console.log(this.yugiohCardsArray)
     }
   //  }
-    
 }
-
 </script>
 
 <!-- HTML -->
 <template>
-    <div class="container">
-        <section class="products">
+  <div class="container">
+    <section class="products">
 
+      <div class="boxes">
 
-            <div class="boxes">
+        <!-- blocco prodotto -->
+        <ProductCard v-for="(product,index) in yugiohCardsArray" :key='index'
+        :details="product"
+        />
 
-                <!-- blocco prodotto -->
-                <ProductCard v-for="(product,index) in yugiohCardsArray" :key='index'
-                :details="product"
-                />
+      </div>   
 
-            </div>
-
-            
-
-        </section>
-    </div>
+    </section>
+  </div>
 
 </template>
 
