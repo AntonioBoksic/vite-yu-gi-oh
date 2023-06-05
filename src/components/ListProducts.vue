@@ -39,7 +39,7 @@ export default {
 
         console.log.datoindietro;
         const result = datoindietro.data.response
-        console.log(datoindietro.data.response);
+        // console.log(datoindietro.data.response);
         this.yugiohCardsArray.push(result)
 
       })

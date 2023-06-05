@@ -14,7 +14,7 @@
 export default {
     name: "ProductCard",
     props: {
-    details: Object
+    details: String
   }
 }
 
@@ -27,11 +27,11 @@ export default {
     <div class="prod-card">
 
             <div class="img-card">
-                <img :src="details.thumb" :alt="details.series">
+                <!-- <img :src="details.thumb" :alt="details.series"> -->
 
             </div>
         
-            <div class="titolo-card">{{ details.series }}</div>
+            <div class="titolo-card">{{ details }}</div>
 
     </div>
 

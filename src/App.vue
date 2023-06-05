@@ -10,6 +10,9 @@ export default {
 </script>
 
 <template>
+  <header>
+    <h1>Yu-Gi-Oh API</h1>
+  </header>
 
   <main>
 
@@ -26,7 +29,7 @@ export default {
 
 
 main {
-  background-color: rgb(30, 30, 30);
+  background-color: orange;
   // height: 100px;
   padding-bottom: 20px;
  
