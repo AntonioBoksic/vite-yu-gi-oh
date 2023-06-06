@@ -1,10 +1,41 @@
 <script>
 import ListProducts from './components/ListProducts.vue';
+import AppSearch from './components/AppSearch.vue';
+import { store } from "./store";
 
 
 export default {
   components: {
     ListProducts,
+    AppSearch,
+  },
+  data() {
+    return {
+      store,
+    }
+  },
+  methods: {
+    getCharachters() {
+      axios.get(store.apiURL)
+      .then
+        ( (datoindietro) => {
+
+        console.log(datoindietro.data.data)
+        const resultArray = datoindietro.data.data
+        console.log(resultArray[0].name);
+
+        store.yugiohCardsArray = (resultArray)
+
+      }
+      );
+
+    }
+
+  },
+
+
+  created(){
+    this.getCharachters();
   }
 }
 </script>
@@ -16,6 +47,9 @@ export default {
 
   <main>
 
+
+    <!-- questo va in AppSearch qua sotto: @mySearch="getCharachters" -->
+    <AppSearch />
     <ListProducts />
 
   </main>
