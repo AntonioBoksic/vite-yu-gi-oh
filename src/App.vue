@@ -16,27 +16,54 @@ export default {
   },
   methods: {
     getCharachters() {
-      axios.get(store.apiURL)
+
+      let myURL = store.apiURL_allCards
+
+      if(store.chosenArchetype !== ""){
+        // qua possiamo usare o backtick o concat, entrambi uniscono/aggiungono una stringa all altra
+        myURL = store.apiURL_archetypes + `${store.chosenArchetype}`
+
+      }
+
+      axios.get(myURL)
       .then
         ( (datoindietro) => {
 
-        console.log(datoindietro.data.data)
+        
         const resultArray = datoindietro.data.data
-        console.log(resultArray[0].name);
+        // console.log(resultArray[0].name);
 
-        store.yugiohCardsArray = (resultArray)
+        store.yugiohCardsArray = resultArray
 
+        //aggiungo anche che il loading diventa false quando ha finito di eseguire questa funzione, in modo che posso potenzialmente usare un v-if su un componente da far vedere finchè il loading è ancora true.
+        store.loading = false
+      })
+      // aggiungiamo il catch che ci permette di fare qualcosa se avviene un errore: in questo caso stampami l errore
+      .catch(err =>{
+        console.log(err)
+      });
+    },
+    getArchetypes() {
+      axios.get("https://db.ygoprodeck.com/api/v7/archetypes.php")
+      .then
+      ( (archetypeindietro) => {
+        // console.log(archetypeindietro.data)
+        const resultArray2 = archetypeindietro.data
+        store.archetypesArray = resultArray2
       }
-      );
-
+      )
+    },
+    showChosenArchetype() {
+      console.log(store.chosenArchetype)
+      
     }
 
   },
-
-
   created(){
     this.getCharachters();
-  }
+    this.getArchetypes();
+    
+  },
 }
 </script>
 
@@ -47,10 +74,14 @@ export default {
 
   <main>
 
-
-    <!-- questo va in AppSearch qua sotto: @mySearch="getCharachters" -->
-    <AppSearch />
+<!-- questo va qua sotto in AppSearch, ma mi dà errore, lascio fuori un attimo -->
+<!-- @mySearch="getCharachters" -->
+    
+    <AppSearch @mySelection="getCharachters"/>
     <ListProducts />
+
+    <!-- bottone di prova per vedere se prende archetipo selezionato -->
+    <button @click="showChosenArchetype">showChosenArchetype</button>
 
   </main>
 
